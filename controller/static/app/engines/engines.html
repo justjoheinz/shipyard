@@ -24,7 +24,6 @@
             <th ng-class="vm.tablesort.semanticHeaderClass('engine.memory')" ng-click="vm.tablesort.sortBy('engine.memory')">Memory</th>
             <th ng-class="vm.tablesort.semanticHeaderClass('engine.addr')" ng-click="vm.tablesort.sortBy('engine.addr')">Addr</th>
             <th ng-class="vm.tablesort.semanticHeaderClass('engine.labels')" ng-click="vm.tablesort.sortBy('engine.labels')">Labels</th>
-            <th ng-class="vm.tablesort.semanticHeaderClass('health.response_time')" ng-click="vm.tablesort.sortBy('health.response_time')">Response Time (ms)</th>
             <th ng-class="vvm.tablesort.semanticHeaderClass('engine.docker_version')" ng-click="vm.stablesort.sortBy('engine.docker_version')">Docker Version</th>
         </tr>
     </thead>
@@ -39,7 +38,6 @@
             <td>{{e.engine.memory}} MB</td>
             <td>{{e.engine.addr}}</td>
             <td>{{e.engine.labels.join(', ')}}</td>
-            <td>{{((e.health.response_time / 1000000) | number:1) || "-" }}</td>
             <td>{{e.docker_version}}</td>
         </tr>
     </tbody>

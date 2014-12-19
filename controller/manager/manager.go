@@ -175,7 +175,8 @@ func (m *Manager) init() []*shipyard.Engine {
 	// start extension health check
 	go m.extensionHealthCheck()
 	// start engine check
-	go m.engineCheck()
+	// TODO: tempoarily disabled
+	//go m.engineCheck()
 	// anonymous usage info
 	go m.usageReport()
 	return engines
@@ -339,14 +340,6 @@ func (m *Manager) Engine(id string) *shipyard.Engine {
 }
 
 func (m *Manager) AddEngine(engine *shipyard.Engine) error {
-	stat, err := m.pingEngine(engine.Engine.Addr)
-	if err != nil {
-		return err
-	}
-	if stat != 200 {
-		err := fmt.Errorf("Received status code '%d' when contacting %s", stat, engine.Engine.Addr)
-		return err
-	}
 	if _, err := r.Table(tblNameConfig).Insert(engine).RunWrite(m.session); err != nil {
 		return err
 	}
